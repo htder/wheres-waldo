@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "wheres-waldo-react",
     "public": "build",
     "ignore": [
       "firebase.json",
