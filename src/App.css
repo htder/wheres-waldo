@@ -60,7 +60,7 @@
 }
 
 .header-container {
+  padding-top: 1%;
   display: flex;
   justify-content: center;
-  padding-top: 1%;
 }

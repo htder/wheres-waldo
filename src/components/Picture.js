@@ -1,16 +1,25 @@
-import React from 'react';
+import React, {useState} from 'react';
 import waldo from '../images/waldo1.jpg';
 
 function Picture() {
+  const [clickLocation, setClickLocation] = useState({x: 0, y: 0})
 
   function handleGuess() {
     console.log("guess");
   }
 
   function handleClick(event) {
-    const {pageX: x, pageY: y} = event;
     const menu = document.querySelector(".dropdown");
     const circle = document.querySelector(".circle");
+    const {pageX: x, pageY: y} = event;
+    const {offsetX, offsetY, target} = event.nativeEvent;
+    const xPos = Math.round((offsetX / target.offsetWidth) * 100);
+    const yPos = Math.round((offsetY / target.offsetHeight) * 100);
+    setClickLocation({
+      x: xPos,
+      y: yPos
+    });
+    console.log(xPos, yPos);
 
     circle.style.top = `${y}px`;
     circle.style.left = `${x}px`;
@@ -19,6 +28,7 @@ function Picture() {
     menu.style.top = `${y - 10}px`;
     menu.style.left = `${x + 35}px`;
     menu.classList.toggle("dropdown-visible");
+
   }
 
   const dropDownItems = ( 
@@ -38,7 +48,8 @@ function Picture() {
           src={waldo} 
           onClick={(e) => handleClick(e)} 
           className="image"
-          alt="peach"/>
+          alt="peach"
+        />
         {dropDownItems}
         <div className="circle"></div>
       </div>
