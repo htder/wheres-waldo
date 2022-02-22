@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
 import waldo from '../images/waldo1.jpg';
+import data from '../data.json';
 
 function Picture() {
   const [clickLocation, setClickLocation] = useState({x: 0, y: 0})
 
-  function handleGuess() {
-    console.log("guess");
+  function isGuessCorrect(character) {
+     
   }
 
   function handleClick(event) {
@@ -19,7 +20,6 @@ function Picture() {
       x: xPos,
       y: yPos
     });
-    console.log(xPos, yPos);
 
     circle.style.top = `${y}px`;
     circle.style.left = `${x}px`;
@@ -31,15 +31,17 @@ function Picture() {
 
   }
 
-  const dropDownItems = ( 
-    <div className="dropdown">
-      <div className="dropdown-list">
-        <p className="dropdown-item" onClick={handleGuess}>one</p>
-        <p className="dropdown-item" onClick={handleGuess}>one</p>
-        <p className="dropdown-item" onClick={handleGuess}>one</p>
-      </div>
-    </div>
-  );
+  const dropDownItems = data[1].map((character, index) => {
+    return (
+      <p 
+        className="dropdown-item"
+        key={index} 
+        onClick={() => isGuessCorrect(character)}
+      >
+        {character}
+      </p>
+    );
+  });
 
   return (
     <div>
@@ -50,7 +52,9 @@ function Picture() {
           className="image"
           alt="peach"
         />
-        {dropDownItems}
+        <div className="dropdown">
+          {dropDownItems}
+        </div>
         <div className="circle"></div>
       </div>
     </div>
