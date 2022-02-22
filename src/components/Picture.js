@@ -1,15 +1,61 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import { app, firestore } from '../firebase.js';
+import { doc, getDoc } from 'firebase/firestore';
 import waldo from '../images/waldo1.jpg';
 import data from '../data.json';
 
 function Picture() {
   const [clickLocation, setClickLocation] = useState({x: 0, y: 0})
+  const [locationData, setLocationData] = useState({});
+  const [characters, setCharacter] = useState(getCharacters());
+
+  useEffect(() => {
+    async function getDocs() {
+      const docRef = doc(firestore, "images", "1");
+      const docSnap = await getDoc(docRef);
+      setLocationData(docSnap.data());
+    }
+    getDocs();
+  }, []); 
+
+  function getCharacters() {
+    const characters = {}
+    data[1].forEach(character => {
+      characters[character] = false;
+    })
+    return characters;
+  }
+  
+  function checkGuess(character) {
+    const xLocation = character + "X";
+    const yLocation = character + "Y";
+
+    const correctX = locationData[xLocation];
+    const upperClickX = correctX + 1;
+    const lowerClickX = correctX - 1;
+    const isXLocCorrect = upperClickX >= clickLocation.x && clickLocation.x >= lowerClickX;
+
+    const correctY = locationData[yLocation];
+    const upperClickY = correctY + 1;
+    const lowerClickY = correctY - 1;
+    const isYLocCorrect = upperClickY >= clickLocation.y && clickLocation.y >= lowerClickY;
+
+    return (isXLocCorrect, isYLocCorrect);
+  }
 
   function isGuessCorrect(character) {
-     
+    if (checkGuess(character)) {
+      setCharacter(prevChars => {
+        return {
+          ...prevChars,
+          [character]: true,
+        };
+      });
+    };
   }
 
   function handleClick(event) {
+    console.log(characters);
     const menu = document.querySelector(".dropdown");
     const circle = document.querySelector(".circle");
     const {pageX: x, pageY: y} = event;
@@ -28,7 +74,6 @@ function Picture() {
     menu.style.top = `${y - 10}px`;
     menu.style.left = `${x + 35}px`;
     menu.classList.toggle("dropdown-visible");
-
   }
 
   const dropDownItems = data[1].map((character, index) => {
