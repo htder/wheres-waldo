@@ -7,7 +7,11 @@
   position: absolute;
   display: none;
   z-index: 100;
-  border: 1px solid black;
+  border-radius: 3px;
+  background-color: white;
+  width: 120px;
+  text-align: center;
+  font-weight: bold;
 }
 
 .dropdown-visible {
@@ -18,25 +22,23 @@
   display: flex;
   flex-direction: column;
   text-align: center;
-  width: 100px;
-  padding: 2px;
+  padding: 1px;
 }
 
 .dropdown-item {
-  padding: 5px 0;
+  padding: 1px 0;
 }
 
 .dropdown p:hover {
-  border: 1px solid black;
+  box-shadow: 0 0 0 1px black;
   cursor: pointer;
 }
-
 
 .circle {
   position: absolute;
   display: none;
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   top: 0;
   left: 0;
@@ -47,8 +49,8 @@
 .green-circle {
   position: absolute;
   display: none;
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   top: 0;
   left: 0;

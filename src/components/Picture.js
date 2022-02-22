@@ -78,6 +78,10 @@ function Picture() {
         };
       });
     };
+    const menu = document.querySelector(".dropdown");
+    const circle = document.querySelector(".circle");
+    circle.classList.toggle("circle-visible");
+    menu.classList.toggle("dropdown-visible");
   }
 
   function handleClick(event) {
