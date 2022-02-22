@@ -1,5 +1,5 @@
 import React from 'react';
-import peach from '../images/peach.jpg';
+import waldo from '../images/waldo1.jpg';
 
 function Picture() {
 
@@ -17,7 +17,7 @@ function Picture() {
     circle.classList.toggle("circle-visible");
 
     menu.style.top = `${y - 10}px`;
-    menu.style.left = `${x + 25}px`;
+    menu.style.left = `${x + 35}px`;
     menu.classList.toggle("dropdown-visible");
   }
 
@@ -33,13 +33,15 @@ function Picture() {
 
   return (
     <div>
-      <img 
-        src={peach} 
-        onClick={(e) => handleClick(e)} 
-        className="image"
-        alt="peach"/>
-      {dropDownItems}
-      <div className="circle"></div>
+      <div className="image-container">
+        <img 
+          src={waldo} 
+          onClick={(e) => handleClick(e)} 
+          className="image"
+          alt="peach"/>
+        {dropDownItems}
+        <div className="circle"></div>
+      </div>
     </div>
   );
 };

@@ -35,9 +35,9 @@
 .circle {
   position: absolute;
   display: none;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  /* border-radius: 50%; */
   top: 0;
   left: 0;
   transform: translate(-50%, -50%);
@@ -46,4 +46,21 @@
 
 .circle-visible {
   display: block;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.image-container > img {
+  width: 75%;
+  padding: 1%;
+}
+
+.header-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 1%;
 }
