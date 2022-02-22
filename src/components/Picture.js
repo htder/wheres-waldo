@@ -6,8 +6,10 @@ import data from '../data.json';
 
 function Picture() {
   const [clickLocation, setClickLocation] = useState({x: 0, y: 0})
+  const [clickLocationCircle, setClickLocationCircle] = useState({x: 0, y: 0});
   const [locationData, setLocationData] = useState({});
   const [characters, setCharacter] = useState(getCharacters());
+  const [correctLocation, setCorrectLocation] = useState([]);
 
   useEffect(() => {
     async function getDocs() {
@@ -18,6 +20,15 @@ function Picture() {
     getDocs();
   }, []); 
 
+  useEffect(() => {
+    correctLocation.forEach(item => {
+      const circle = document.getElementById(item[0]);
+      circle.style.top = `${item[2]}px`;
+      circle.style.left = `${item[1]}px`;
+      circle.classList.add("circle-visible");
+    })
+  }, [correctLocation])
+
   function getCharacters() {
     const characters = {}
     data[1].forEach(character => {
@@ -25,6 +36,15 @@ function Picture() {
     })
     return characters;
   }
+
+  const correctCircles = data[1].map((character, index) => {
+      return <div 
+        className="green-circle"
+        id={`${character}`}
+        key={index}
+      ></div>
+    })
+  
   
   function checkGuess(character) {
     const xLocation = character + "X";
@@ -40,7 +60,13 @@ function Picture() {
     const lowerClickY = correctY - 1;
     const isYLocCorrect = upperClickY >= clickLocation.y && clickLocation.y >= lowerClickY;
 
-    return (isXLocCorrect, isYLocCorrect);
+    if (isXLocCorrect && isYLocCorrect) {
+      setCorrectLocation(prev => [
+        ...prev,
+        [character, clickLocationCircle.x, clickLocationCircle.y]
+      ]) 
+    }
+    return (isXLocCorrect && isYLocCorrect);
   }
 
   function isGuessCorrect(character) {
@@ -55,7 +81,6 @@ function Picture() {
   }
 
   function handleClick(event) {
-    console.log(characters);
     const menu = document.querySelector(".dropdown");
     const circle = document.querySelector(".circle");
     const {pageX: x, pageY: y} = event;
@@ -66,6 +91,11 @@ function Picture() {
       x: xPos,
       y: yPos
     });
+
+    setClickLocationCircle({
+      x: x,
+      y: y
+    })
 
     circle.style.top = `${y}px`;
     circle.style.left = `${x}px`;
@@ -101,6 +131,7 @@ function Picture() {
           {dropDownItems}
         </div>
         <div className="circle"></div>
+        {correctCircles}
       </div>
     </div>
   );
