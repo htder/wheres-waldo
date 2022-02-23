@@ -9,6 +9,9 @@ function Header(props) {
       <div>
         <span>Score: {Math.trunc(props.time / 100)}</span>
       </div>
+      <div onClick={() => props.showModal()}>
+        Leaderboard
+      </div>
     </div>
   );
 }

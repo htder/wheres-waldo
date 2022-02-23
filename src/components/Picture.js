@@ -49,7 +49,6 @@ function Picture(props) {
       ></div>
     })
   
-  
   function checkGuess(character) {
     const xLocation = character + "X";
     const yLocation = character + "Y";
