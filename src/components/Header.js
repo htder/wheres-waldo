@@ -9,8 +9,13 @@ function Header(props) {
       <div className="title">
         <h1>Where's Waldo?</h1>
       </div>
-      <div className="leaderboard" onClick={() => props.showModal()}>
-        Leaderboard
+      <div className="button-container">
+        <div className="leaderboard" onClick={() => props.showModal()}>
+          Leaderboard
+        </div>
+        <div className="play-again" onClick={() => props.reset()}>
+          Play again?
+        </div>
       </div>
     </div>
   );

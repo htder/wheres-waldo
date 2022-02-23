@@ -5,11 +5,11 @@ import waldo from '../images/waldo1.jpg';
 import data from '../data.json';
 
 function Picture(props) {
-  const [clickLocation, setClickLocation] = useState({x: 0, y: 0})
-  const [clickLocationCircle, setClickLocationCircle] = useState({x: 0, y: 0});
+  // const [clickLocation, setClickLocation] = useState({x: 0, y: 0})
+  // const [clickLocationCircle, setClickLocationCircle] = useState({x: 0, y: 0});
   const [locationData, setLocationData] = useState({});
-  const [characters, setCharacter] = useState(getCharacters());
-  const [correctLocation, setCorrectLocation] = useState([]);
+  // const [characters, setCharacter] = useState(getCharacters());
+  // const [correctLocation, setCorrectLocation] = useState([]);
 
   useEffect(() => {
     async function getDocs() {
@@ -21,25 +21,25 @@ function Picture(props) {
   }, []); 
 
   useEffect(() => {
-    correctLocation.forEach(item => {
+    props.correctLocation.forEach(item => {
       const circle = document.getElementById(item[0]);
       circle.style.top = `${item[2]}px`;
       circle.style.left = `${item[1]}px`;
       circle.classList.add("circle-visible");
     })
-    if (correctLocation.length === 3) {
+    if (props.correctLocation.length === 3) {
       props.endTime();
       props.gameover();
     }
-  }, [correctLocation])
+  }, [props.correctLocation])
 
-  function getCharacters() {
-    const characters = {}
-    data[1].forEach(character => {
-      characters[character] = false;
-    })
-    return characters;
-  }
+  // function getCharacters() {
+  //   const characters = {}
+  //   data[1].forEach(character => {
+  //     characters[character] = false;
+  //   })
+  //   return characters;
+  // }
 
   const correctCircles = data[1].map((character, index) => {
       return <div 
@@ -56,17 +56,17 @@ function Picture(props) {
     const correctX = locationData[xLocation];
     const upperClickX = correctX + 1;
     const lowerClickX = correctX - 1;
-    const isXLocCorrect = upperClickX >= clickLocation.x && clickLocation.x >= lowerClickX;
+    const isXLocCorrect = upperClickX >= props.clickLocation.x && props.clickLocation.x >= lowerClickX;
 
     const correctY = locationData[yLocation];
     const upperClickY = correctY + 1;
     const lowerClickY = correctY - 1;
-    const isYLocCorrect = upperClickY >= clickLocation.y && clickLocation.y >= lowerClickY;
+    const isYLocCorrect = upperClickY >= props.clickLocation.y && props.clickLocation.y >= lowerClickY;
 
     if (isXLocCorrect && isYLocCorrect) {
-      setCorrectLocation(prev => [
+      props.setCorrectLocation(prev => [
         ...prev,
-        [character, clickLocationCircle.x, clickLocationCircle.y]
+        [character, props.clickLocationCircle.x, props.clickLocationCircle.y]
       ]) 
     }
     return (isXLocCorrect && isYLocCorrect);
@@ -74,7 +74,7 @@ function Picture(props) {
 
   function isGuessCorrect(character) {
     if (checkGuess(character)) {
-      setCharacter(prevChars => {
+      props.setCharacter(prevChars => {
         return {
           ...prevChars,
           [character]: true,
@@ -94,12 +94,12 @@ function Picture(props) {
     const {offsetX, offsetY, target} = event.nativeEvent;
     const xPos = Math.round((offsetX / target.offsetWidth) * 100);
     const yPos = Math.round((offsetY / target.offsetHeight) * 100);
-    setClickLocation({
+    props.setClickLocation({
       x: xPos,
       y: yPos
     });
 
-    setClickLocationCircle({
+    props.setClickLocationCircle({
       x: x,
       y: y
     })
