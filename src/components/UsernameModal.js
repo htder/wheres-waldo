@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { app, firestore } from '../firebase.js';
 import { doc, updateDoc, onSnapshot, getDoc } from 'firebase/firestore';
+import '../App.css';
 
 function UsernameModal(props) {
   const [username, setUsername] = useState("");
@@ -45,6 +46,7 @@ function UsernameModal(props) {
       await updateDoc(doc(firestore, "images", "scores"), data);
     }
     setScore();
+    props.close();
     // sortScores();
   }
 
@@ -72,18 +74,23 @@ function UsernameModal(props) {
   // }
 
   return (
-    <div className="modal">
+    <>
+    <div className="modal dark-background" onClick={() => props.close()} />
+    <div className="modal-center">
       <div className="modal-content">
-        <h1>Enter Your Username</h1>
-        {/* {showLeaderboard && scoreList} */}
-        <form>
-          <label>
+        <h1 className="modal-title">Enter Your Username</h1>
+        <form className="modal-form">
+          <label className="modal-input">
             Username: <input type="text" onChange={handleChange} />
           </label>
-          <button type="button" onClick={handleSubmit}>Submit</button>
+          <div className="modal-buttons">
+            <button type="button" onClick={handleSubmit}>Submit</button>
+            <button type="button" onClick={() => props.close()}>Close</button>
+          </div>
         </form>
       </div>
     </div>
+    </>
   )
 }
 

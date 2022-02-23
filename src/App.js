@@ -38,6 +38,10 @@ function App() {
     setShowModal(true);
   }
 
+  function hideModal() {
+    setShowModal(false);
+  }
+
   function showScores() {
     setShowLeaderboard(prev => prev ? false : true);
   }
@@ -50,7 +54,7 @@ function App() {
         endTime={endTime}
         gameover={gameover}
       />
-      {showModal && <UsernameModal time={time} />}
+      {showModal && <UsernameModal time={time} close={hideModal} />}
       {showLeaderboard && <LeaderboardModal />}
     </div>
   );
