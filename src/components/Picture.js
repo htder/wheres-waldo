@@ -29,6 +29,7 @@ function Picture(props) {
     })
     if (correctLocation.length === 3) {
       props.endTime();
+      props.gameover();
     }
   }, [correctLocation])
 
