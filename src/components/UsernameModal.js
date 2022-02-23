@@ -41,7 +41,7 @@ function UsernameModal(props) {
 
     async function setScore() {
       const data = {
-        [username]: props.time,
+        [username]: Math.trunc(props.time / 100),
       }
       await updateDoc(doc(firestore, "images", "scores"), data);
     }
