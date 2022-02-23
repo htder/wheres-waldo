@@ -8,7 +8,7 @@ import './App.css';
 function App() {
   const [time, setTime] = useState(0);
   const [isActive, setIsActive] = useState(false);
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   const [showLeaderboard, setShowLeaderboard] = useState(false);
 
   React.useEffect(() => {
