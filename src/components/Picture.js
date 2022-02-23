@@ -4,7 +4,7 @@ import { doc, getDoc } from 'firebase/firestore';
 import waldo from '../images/waldo1.jpg';
 import data from '../data.json';
 
-function Picture() {
+function Picture(props) {
   const [clickLocation, setClickLocation] = useState({x: 0, y: 0})
   const [clickLocationCircle, setClickLocationCircle] = useState({x: 0, y: 0});
   const [locationData, setLocationData] = useState({});
@@ -27,6 +27,9 @@ function Picture() {
       circle.style.left = `${item[1]}px`;
       circle.classList.add("circle-visible");
     })
+    if (correctLocation.length === 3) {
+      props.endTime();
+    }
   }, [correctLocation])
 
   function getCharacters() {
@@ -128,6 +131,7 @@ function Picture() {
         <img 
           src={waldo} 
           onClick={(e) => handleClick(e)} 
+          onLoad={() => props.startTime()}
           className="image"
           alt="peach"
         />

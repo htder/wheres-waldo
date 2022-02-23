@@ -74,7 +74,12 @@
 }
 
 .header-container {
-  padding-top: 1%;
   display: flex;
   justify-content: center;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
