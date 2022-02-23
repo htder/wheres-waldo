@@ -3,13 +3,13 @@ import React from 'react';
 function Header(props) {
   return (
     <div className="header">
-      <div className="header-container">
+      <div className="score">
+        Score: {Math.trunc(props.time / 100)}
+      </div>
+      <div className="title">
         <h1>Where's Waldo?</h1>
       </div>
-      <div>
-        <span>Score: {Math.trunc(props.time / 100)}</span>
-      </div>
-      <div onClick={() => props.showModal()}>
+      <div className="leaderboard" onClick={() => props.showModal()}>
         Leaderboard
       </div>
     </div>

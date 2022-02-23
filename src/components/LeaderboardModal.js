@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { firestore } from '../firebase.js';
 import { doc, getDoc } from 'firebase/firestore';
+import '../App.css';
 
 function LeaderboardModal(props) {
   const [scores, setScores] = useState([]);
@@ -31,12 +32,20 @@ function LeaderboardModal(props) {
   });
   
   return (
-    <div>
-      <h1>leaderboard</h1>
-      <ol>
-        {scoreList}
-      </ol>
+    <>
+    <div className="dark-background" onClick={() => props.close()}/>
+    <div className="modal-center">
+      <div className="modal-content-leaderboard">
+        <h1 className="modal-title">leaderboard</h1>
+        <div className="modal-list">
+          <ul >
+            {scoreList}
+          </ul>
+        </div>
+        <button type="button" onClick={() => props.close()}>Close</button>
+      </div>
     </div>
+    </>
   );
 };
 

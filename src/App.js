@@ -43,7 +43,11 @@ function App() {
   }
 
   function showScores() {
-    setShowLeaderboard(prev => prev ? false : true);
+    setShowLeaderboard(true);
+  }
+
+  function closeLeaderboard() {
+    setShowLeaderboard(false);
   }
 
   return (
@@ -55,7 +59,7 @@ function App() {
         gameover={gameover}
       />
       {showModal && <UsernameModal time={time} close={hideModal} />}
-      {showLeaderboard && <LeaderboardModal />}
+      {showLeaderboard && <LeaderboardModal close={closeLeaderboard} />}
     </div>
   );
 }
