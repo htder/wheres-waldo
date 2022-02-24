@@ -1,15 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import { app, firestore } from '../firebase.js';
+import { firestore } from '../firebase.js';
 import { doc, getDoc } from 'firebase/firestore';
 import waldo from '../images/waldo1.jpg';
 import data from '../data.json';
 
 function Picture(props) {
-  // const [clickLocation, setClickLocation] = useState({x: 0, y: 0})
-  // const [clickLocationCircle, setClickLocationCircle] = useState({x: 0, y: 0});
   const [locationData, setLocationData] = useState({});
-  // const [characters, setCharacter] = useState(getCharacters());
-  // const [correctLocation, setCorrectLocation] = useState([]);
 
   useEffect(() => {
     async function getDocs() {
@@ -32,14 +28,6 @@ function Picture(props) {
       props.gameover();
     }
   }, [props.correctLocation])
-
-  // function getCharacters() {
-  //   const characters = {}
-  //   data[1].forEach(character => {
-  //     characters[character] = false;
-  //   })
-  //   return characters;
-  // }
 
   const correctCircles = data[1].map((character, index) => {
       return <div 

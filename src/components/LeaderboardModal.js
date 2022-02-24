@@ -23,7 +23,7 @@ function LeaderboardModal(props) {
     return arr;
   }
 
-  const scoreList = scores.map((item, i) => {
+  const scoreList = scores.map(item => {
     return (
       <tr>
         <td>{item[0]}</td>

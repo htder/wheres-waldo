@@ -19,6 +19,7 @@ function InfoBar() {
         <img src={wizard} alt="wizard" />
         <figcaption>Wizard</figcaption>
       </figure>
+      <p>Click on the picture for the selection menu.</p>
     </div>
   );
 };

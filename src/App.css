@@ -243,3 +243,7 @@ th {
   width: 100%;
   border: 1px solid black;
 }
+
+.infobar p {
+  padding-top: 15px;
+}
