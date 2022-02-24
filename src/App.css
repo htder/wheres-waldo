@@ -65,12 +65,11 @@
 .image-container {
   display: flex;
   justify-content: center;
-  width: 100%;
 }
 
 .image-container > img {
-  width: 75%;
-  padding: 1%;
+  padding-top: 10px;
+  height: 90vh;
 }
 
 .title {
@@ -225,4 +224,22 @@ th {
 .close-leaderboard {
   padding: 5px;
   width: 80px;
+}
+
+.game-container {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+}
+
+.infobar {
+  width: 200px;
+  margin-left: 25px;
+}
+
+.infobar img {
+  width: 100%;
+}
+.infobar figure {
+  width: 100%;
+  border: 1px solid black;
 }

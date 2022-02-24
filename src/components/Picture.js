@@ -126,7 +126,6 @@ function Picture(props) {
   });
 
   return (
-    <div>
       <div className="image-container">
         <img 
           src={waldo} 
@@ -141,7 +140,6 @@ function Picture(props) {
         <div className="circle"></div>
         {correctCircles}
       </div>
-    </div>
   );
 };
 
