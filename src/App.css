@@ -93,12 +93,24 @@
 .leaderboard {
   display: flex;
   align-items: center;
-  padding-right: 5px;
+  padding: 5px;
+  border: 1px solid black;
+  margin-right: 2px;
+  border-radius: 3px;
 }
 
 .play-again {
-  padding-left: 5px;
+  padding: 5px;
+  border: 1px solid black;
+  margin-left: 2px;
+  border-radius: 3px;
 }
+
+.button-container div:hover {
+  background-color: rgba(0,0,0,0.2);
+  cursor: pointer;
+}
+
 
 .dark-background {
   background-color: rgba(0, 0, 0, 0.2);
@@ -120,7 +132,7 @@
 
 .modal-content-leaderboard {
   width: 400px;
-  min-height: 320px;
+  min-height: 450px;
   background: white;
   color: black;
   z-index: 10px;
@@ -128,7 +140,7 @@
   box-shadow: 0 5px 20px 0 rgba(0,0,0,0.04);
 }
 .modal-content {
-  width: 400px;
+  width: 430px;
   height: 320px;
   background: white;
   color: black;
@@ -160,7 +172,15 @@
   width: 100px;
   margin-left: auto;
   margin-right: auto;
+  border-radius: 3px;
 }
+
+.submit,
+.close {
+  padding: 5px;
+  margin: 4px;
+}
+
 
 .modal-list {
   display: flex;
@@ -169,5 +189,40 @@
 
 .button-container {
   display: flex;
-  
+}
+
+.table-fix-head {
+  overflow-y: auto;
+  height: 300px;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+table {
+  border-collapse: collapse;
+  width: 90%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+th,
+td {
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+}
+
+th {
+  background: #eee;
+}
+
+.close-leaderboard-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  align-items: center;
+}
+
+.close-leaderboard {
+  padding: 5px;
+  width: 80px;
 }

@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import Header from './components/Header';
 import Picture from './components/Picture';
 import UsernameModal from './components/UsernameModal';
+import InfoBar from './components/InfoBar';
 import LeaderboardModal from './components/LeaderboardModal';
 import './App.css';
 import data from './data.json';
@@ -85,18 +86,21 @@ function App() {
         showModal={showScores}
         reset={reset}
       />
-      <Picture 
-        startTime={startTime} 
-        endTime={endTime}
-        gameover={gameover}
-        clickLocation={clickLocation}
-        setClickLocation={setClickLocation}
-        clickLocationCircle={clickLocationCircle}
-        setClickLocationCircle={setClickLocationCircle}
-        correctLocation={correctLocation}
-        setCorrectLocation={setCorrectLocation}
-        setCharacter={setCharacter}
-      />
+      <div className="game-container">
+        <InfoBar />
+        <Picture 
+          startTime={startTime} 
+          endTime={endTime}
+          gameover={gameover}
+          clickLocation={clickLocation}
+          setClickLocation={setClickLocation}
+          clickLocationCircle={clickLocationCircle}
+          setClickLocationCircle={setClickLocationCircle}
+          correctLocation={correctLocation}
+          setCorrectLocation={setCorrectLocation}
+          setCharacter={setCharacter}
+        />
+      </div>
       {showModal && <UsernameModal time={time} close={hideModal} />}
       {showLeaderboard && <LeaderboardModal close={closeLeaderboard} />}
     </div>

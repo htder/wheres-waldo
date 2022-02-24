@@ -78,14 +78,27 @@ function UsernameModal(props) {
     <div className="modal dark-background" onClick={() => props.close()} />
     <div className="modal-center">
       <div className="modal-content">
-        <h1 className="modal-title">Enter Your Username</h1>
+        <h1 className="modal-title">Congratulations!</h1>
+        <h2 className="modal-title">Add your score to the leaderboards!</h2>
         <form className="modal-form">
           <label className="modal-input">
             Username: <input type="text" onChange={handleChange} />
           </label>
           <div className="modal-buttons">
-            <button type="button" onClick={handleSubmit}>Submit</button>
-            <button type="button" onClick={() => props.close()}>Close</button>
+            <button 
+                type="button" 
+                className="submit" 
+                onClick={handleSubmit}
+            >
+              Submit
+            </button>
+            <button 
+                type="button" 
+                className="close"
+                onClick={() => props.close()}
+            >
+              Close
+            </button>
           </div>
         </form>
       </div>

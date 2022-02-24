@@ -25,9 +25,10 @@ function LeaderboardModal(props) {
 
   const scoreList = scores.map((item, i) => {
     return (
-      <li key={i}>
-        {`${item[0]} - ${item[1]}`}
-      </li>
+      <tr>
+        <td>{item[0]}</td>
+        <td>{item[1]}</td>
+      </tr>
     );
   });
   
@@ -36,13 +37,29 @@ function LeaderboardModal(props) {
     <div className="dark-background" onClick={() => props.close()}/>
     <div className="modal-center">
       <div className="modal-content-leaderboard">
-        <h1 className="modal-title">leaderboard</h1>
-        <div className="modal-list">
-          <ul >
-            {scoreList}
-          </ul>
+        <h1 className="modal-title">Leaderboard</h1>
+        <div className="table-fix-head">
+          <table>
+            <thead>
+              <tr>
+                <th>Username</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              {scoreList}
+            </tbody>
+          </table>
         </div>
-        <button type="button" onClick={() => props.close()}>Close</button>
+        <div className="close-leaderboard-container">
+          <button 
+              type="button" 
+              onClick={() => props.close()}
+              className="close-leaderboard"
+          >
+            Close
+          </button>
+        </div>
       </div>
     </div>
     </>
